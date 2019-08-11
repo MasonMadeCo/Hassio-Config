@@ -1,5 +1,5 @@
 - platform: darksky
-  api_key: dd3a54e8c52940d7639c946a66773c0b
+  api_key:
   units: us 
   
   monitored_conditions:
