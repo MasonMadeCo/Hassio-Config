@@ -1,0 +1,15 @@
+- id: '1565159999620'
+  alias: Ashley's Alarm
+  trigger:
+  - entity_id: sensor.a_alarmtrigger
+    from: 'False'
+    platform: state
+    to: 'True'
+  condition:
+  - condition: state
+    entity_id: input_boolean.a_alarm_status
+    state: 'on'
+  action:
+  - data:
+      message: 'Alarm '
+    service: tts.google_translate_say

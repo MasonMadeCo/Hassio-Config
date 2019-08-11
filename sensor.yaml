@@ -1,0 +1,178 @@
+- platform: darksky
+  api_key: dd3a54e8c52940d7639c946a66773c0b
+  units: us 
+  
+  monitored_conditions:
+  - summary
+  - icon
+  - nearest_storm_distance
+  - nearest_storm_bearing
+  - precip_type
+  - precip_intensity
+  - precip_probability
+  - temperature
+  - apparent_temperature
+#  - dew_point
+#  - wind_speed
+#  - wind_bearing
+  - cloud_cover
+  - humidity
+#  - pressure
+#  - visibility
+#  - ozone
+  - minutely_summary
+  - hourly_summary
+  - daily_summary
+  - temperature_max
+  - temperature_min
+  - apparent_temperature_max
+  - apparent_temperature_min
+  - precip_intensity_max
+#  - uv_index
+#  - sunrise_time
+#  - sunset_time  
+#  - moon_phase
+  forecast:
+#  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  hourly_forecast:
+#  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  
+  
+- platform: time_date
+  display_options:
+  - time
+  - date
+
+- platform: worldclock
+  time_zone: America/Chicago
+
+- platform: template
+  sensors:
+    time_12_hour_am_pm:
+      friendly_name: "Time 12 Hour AM PM"
+      value_template: "{{  as_timestamp(now()) | timestamp_custom('%-I:%M %p') }}"
+      entity_id: sensor.time
+
+
+- platform: template
+  sensors:
+    time_am_pm:
+      friendly_name: "Time AM PM"
+      value_template: "{{  as_timestamp(now()) | timestamp_custom('%p') }}"
+      entity_id: sensor.time
+
+
+- platform: template
+  sensors:
+    time_12_hour:
+      friendly_name: "Time 12 Hour"
+      value_template: "{{  as_timestamp(now()) | timestamp_custom('%-I:%M') }}"
+      entity_id: sensor.time
+
+
+- platform: template
+  sensors:
+    ashley_charging:
+      value_template: "{{states.device_tracker.life360_ashley.attributes.battery_charging}}"
+
+- platform: template
+  sensors:
+    tony_charging:
+      value_template: "{{states.device_tracker.life360_tony.attributes.battery_charging}}"
+
+
+- platform: template
+  sensors:
+    dayoftheweek:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().weekday()] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day1:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-1] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day2:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-7] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day3:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-6] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day4:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-5] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day5:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-4] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day6:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-3] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    day7:
+      value_template: "{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][now().isoweekday()-2] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    month:
+      value_template: "{{ ['January','February','March','April','May','June','July','August','September','October','November','December'][now().month-1] }}"
+      entity_id: sensor.time
+
+- platform: template
+  sensors:
+    dateofthemonth:
+      value_template: "{{ ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th','16th','17th','18th','19th','20th','21th','22th','23th','24th','25th','26th','27th','28th','29th','30th','31th' ][ now().day-1] }}"
+      entity_id: sensor.time
+
+
+
+- platform: template
+  sensors:
+    a_alarm:
+      value_template: "{{ states.input_select.a_alarm_hours.state | int  }}:{{ states.input_select.a_alarm_minutes.state }} {{ states.input_select.alarm_ampm.state  }}"
+      
+
+
+- platform: template
+  sensors:
+    a_alarmtrigger:
+      value_template: "{{states('sensor.time_12_hour_am_pm') == states.sensor.a_alarm.state }}"
+
+
+
+
+
+- platform: template
+  sensors:
+    a_alarmtester:
+      value_template: " {{states('sensor.time_12_hour_am_pm') == states.sensor.a_alarm.state }}" 
+      entity_id: sensor.time
