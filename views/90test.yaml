@@ -1,0 +1,127 @@
+- title: Test
+  panel: true
+  
+  popup_cards:
+    sensor.a_alarm:
+       title: Bedside lamp settings
+       large: true
+       style:
+          background-image: /local/images/2000x80020p.png
+          background-color: rgba(0,0,0,0.3)
+       card:
+        type: picture-elements
+        image: /local/images/2000x80020p.png
+        style: |
+          ha-card { 
+          background-color: rgba(0,0,0,0.7)
+           }
+
+        elements:  
+         - type: custom:state-element
+           tap_action: 
+           action: toggle
+           entity: sensor.a_alarm
+           style:
+            font-size: 200px
+            color: white
+            top: 50%
+            left: 50%
+
+                ### Plus ###
+         - type: image
+           image: /local/images/RemoteIcons/chevron-up.png
+           title: Plus 
+           tap_action:
+             action: call-service
+             entity: input_number.a_alarm_hours
+             service: input_number.increment
+             service_data: { "entity_id": " input_number.a_alarm_hours "}
+           style:
+             width: 60px
+             top: 40%
+             left: 10%        
+            
+               ### Minus ###
+         - type: image
+           image: /local/images/RemoteIcons/chevron-down.png
+           title: Minus 
+           tap_action:
+             action: call-service
+             entity: input_number.a_alarm_hours
+             service: input_number.decrement
+             service_data: { "entity_id": "input_number.a_alarm_hours"}
+           style:
+             width: 60px
+             top: 60%
+             left: 10%        
+
+
+                ### Plus ###
+         - type: image
+           image: /local/images/RemoteIcons/chevron-up.png
+           title: Plus 
+           tap_action:
+             action: call-service
+             entity: input_number.minutes
+             service: input_number.increment
+             service_data: { "entity_id": "input_number.a_alarm_minutes"}
+           style:
+             width: 60px
+             top: 40%
+             left: 80%        
+            
+               ### Minus ###
+         - type: image
+           image: /local/images/RemoteIcons/chevron-down.png
+           title: Minus 
+           tap_action:
+             action: call-service
+             entity: input_number.minutes
+             service: input_number.decrement
+             service_data: { "entity_id": "input_number.a_alarm_minutes"}
+           style:
+             width: 60px
+             top: 60%
+             left: 80%        
+
+            
+
+
+
+
+  cards:
+
+
+  
+
+   - type: picture-elements
+     image: /local/images/2000x80020p.png
+     style: |
+       ha-card { 
+       background-color: rgba(0,0,0,0.0);
+       }
+
+     elements:
+
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.time_12_hour_am_pm
+          style:
+           font-size: 60px
+           color: white
+           top: 10%
+           left: 10%
+
+ ########## Next Alarm ##########
+        - type: state-label
+          prefix: "Next Alarm:  "
+          #tap_action:
+          #action: more_info
+          entity: sensor.a_alarm
+          style:
+            font-size: 30px
+            color: white
+            top: 80%
+            left: 50%
+            #width: 40px

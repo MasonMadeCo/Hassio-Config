@@ -1,0 +1,21 @@
+
+- title: K Dock
+  panel: true
+  cards:
+    - type: picture-elements
+      image: /local/images/2000x80020p.png
+      style: |
+        ha-card { 
+        background-color: rgba(0,0,0,0.0);
+        }
+      elements:
+      ##########Time##########
+      - type: custom:state-element
+        tap_action: 
+        action: toggle
+        entity: sensor.time_12_hour_am_pm
+        style:
+          font-size: 60px
+          color: white
+          top: 10%
+          left: 10%

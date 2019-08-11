@@ -1,0 +1,123 @@
+- title: A.1 Dock
+  panel: true
+  cards:
+
+
+################## Control Dock #########################
+
+      - type: picture-elements
+        image: /local/images/2000x80020p.png
+        style: |
+            ha-card { 
+            background-color: rgba(0,0,0,0.0);
+            }
+        elements:
+                ### Clock ###
+             - type: custom:state-element
+               tap_action:
+               action: toggle
+               entity: sensor.time_12_hour_am_pm
+               style:
+                 font-size: 60px
+                 color: white
+                 top: 10%
+                 left: 10%
+
+
+   ################# Side Menu ###############
+
+
+
+
+                ### Lights ###
+
+             - type: image
+               icon: mdi:light 
+               entity: light.living_room
+               tap_action:
+                 action: toggle
+               state_image:
+                "on": /local/images/lightbulb-on.png
+                "off": /local/images/lightbulb-off.png
+               style:
+                  # font-size: 30px
+                  #  color: white
+                   top: 50%
+                   left: 5%
+                   width: 40px
+    
+
+
+###########################################################
+#                                                         #
+################## Remote Buttons #########################
+#                                                         #
+###########################################################
+
+                ### Power ###
+             - type: image
+               image: /local/images/RemoteIcons/power.png        
+               tap_action:
+                  action: call-service
+                  entity: remote.harmonyhub
+                  service: remote.send_command
+                  service_data:
+                     { 
+                      "command":"powertoggle",
+                      "device":"59615701"}
+               style:
+                 width: 30px
+                 top: 10%
+                 left: 90%
+
+                ### Home ###
+             - type: image
+               image: /local/images/RemoteIcons/home-circle.png
+               
+               tap_action:
+                  action: call-service
+                  entity: remote.harmonyhub
+                  service: remote.send_command
+                  service_data:
+                     { 
+                      "command":"home",
+                      "device":"59615701"}
+               style:
+                 width: 30px
+                 top: 90%
+                 left: 50%
+
+                ### Vol Up ###
+             - type: image
+               image: /local/images/RemoteIcons/chevron-up.png
+               
+               tap_action:
+                  action: call-service
+                  entity: remote.harmonyhub
+                  service: remote.send_command
+                  service_data:
+                     { 
+                      "command":"home",
+                      "device":"59615701"}
+               style:
+                 width: 30px
+                 top: 40%
+                 left: 10%
+
+
+                ### Vol Mute ###
+             - type: image
+               image: /local/images/RemoteIcons/VOL.png
+               
+               tap_action:
+                  action: call-service
+                  entity: remote.harmonyhub
+                  service: remote.send_command
+                  service_data:
+                     { 
+                      "command":"mute",
+                      "device":"59615701"}
+               style:
+                 width: 30px
+                 top: 50%
+                 left: 10%

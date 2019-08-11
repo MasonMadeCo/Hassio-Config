@@ -1,0 +1,275 @@
+- title: Living Room
+  panel: true
+  cards:
+
+
+
+################## Control Dock #########################
+
+  - type: picture-elements
+    image: /local/images/2000x80020p.png
+    style: |
+      ha-card { 
+      background-color: rgba(0,0,0,0.0);
+      }
+    elements:
+  ### Clock ###
+      - type: custom:state-element
+        tap_action:
+        action: toggle
+        entity: sensor.time_12_hour_am_pm
+        style:
+          font-size: 60px
+          color: white
+          top: 10%
+          left: 10%
+
+
+################# Side Menu ###############
+
+
+
+
+                ### Lights ###
+
+      - type: image
+        icon: mdi:light 
+        entity: light.living_room
+        tap_action:
+        action: toggle
+        state_image:
+          "on": /local/images/lightbulb-on.png
+          "off": /local/images/lightbulb-off.png
+        style:
+          #font-size: 30px
+          #color: white
+          top: 50%
+          left: 5%
+          width: 40px
+    
+
+
+###########################################################
+#                                                         #
+################## Remote Buttons #########################
+#                                                         #
+###########################################################
+
+                ### Power ###
+      - type: image
+        title: Power
+        image: /local/images/RemoteIcons/power.png        
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"powertoggle",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 10%
+          left: 90%
+
+                ### Home ###
+      - type: image
+        image: /local/images/RemoteIcons/home-circle.png
+        title: Home
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"home",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 90%
+          left: 50%
+
+
+                ### Return ###
+      - type: image
+        image: /local/images/RemoteIcons/backup-restore.png
+        title: Back
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"return",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 90%
+          left: 40%
+
+
+                ### Voice ###
+      - type: image
+        image: /local/images/RemoteIcons/microphone.png
+        title: Voice
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: snips.say_action
+          service_data:
+            { 
+            "site_id": "01c76c91-5d9a-43fa-a69f-f67468073ddb",  #Site to use to start session, defaults to default (optional)
+            "text": "hi",  #Text to say
+            # "can_be_enqueued": "true" , #If True, session waits for an open session to end, if False session is dropped if one is running	
+            # "custom_data": "user=UserName",  #custom data that will be included with all messages in this session
+            # "intent_filter": "turnOnLights, turnOffLights"  #Optional Array of Strings - A list of intents names to restrict the NLU resolution to on the first query.	
+            
+            
+            }
+        style:
+          width: 60px
+          top: 90%
+          left: 60%
+
+
+
+################## VOLUME ##################
+
+                ### Vol Up ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-up.png
+        title: Volume Up 
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"VolumeUp",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 40%
+          left: 10%
+
+                ### Vol Mute ###
+      - type: image
+        image: /local/images/RemoteIcons/VOL.png
+        title: Volume Mute 
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"Mute",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 50%
+          left: 10%
+
+                ### Vol Dwn ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-down.png
+        title: Volume Up 
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"VolumeDown",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 60%
+          left: 10%
+
+
+################## DIRECTION/SELECT ##################
+
+                ### Direction Up ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-up.png
+        title: Volume Up 
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"DirectionUp",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 38%
+          left: 70%
+
+                ### Direction Down ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-down.png
+        title: Down
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"DirectionDown",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 62%
+          left: 70%
+
+                ### Direction Left ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-left.png
+        title: Left
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"DirectionLeft",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 50%
+          left: 65%
+
+                ### Direction Right ###
+      - type: image
+        image: /local/images/RemoteIcons/chevron-right.png
+        title: Right
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"DirectionRight",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 50%
+          left: 75%
+
+                ### Direction Select ###
+      - type: image
+        image: /local/images/RemoteIcons/circle-slice-8.png
+        title: Select
+        tap_action:
+          action: call-service
+          entity: remote.harmonyhub
+          service: remote.send_command
+          service_data:
+            { 
+            "command":"Select",
+            "device":"55681787"}
+        style:
+          width: 60px
+          top: 50%
+          left: 70%

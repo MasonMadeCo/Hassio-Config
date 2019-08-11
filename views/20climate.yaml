@@ -1,0 +1,364 @@
+
+##################
+#    REQUIRED    #
+##################
+- title: Climate
+  panel: true
+
+  ######### Pop-Up Card ########
+
+  popup_cards:
+
+    ############### Day 1 Pop-Up ################# 
+    
+    sensor.dark_sky_icon_1d:
+      title: ''
+      large: true
+      style:
+        background-color: 'rgba(0,0,0,0.3)' 
+        background-image: /local/images/2000x80020p.png
+        #border-radius: 15px 
+      card:
+        type: picture-elements
+        image: /local/images/2000x80020p.png
+        style: |
+          ha-card { 
+          background-color: rgba(0,0,0,0.7)
+          }         
+        elements: 
+    ############### Day 1 Summary #################  
+          - type: custom:state-element
+            entity: sensor.dark_sky_summary_1d
+            style: 
+              color: white
+              top: 8%
+              left: 50%
+              height: 20px
+              line-height: 1.2
+              font-size: 40px
+              text-align: center
+
+    ############### Day 1 Pop-Up #################  
+          - type: state-icon
+            entity:
+              - sensor.dark_sky_precip_probability_1d
+            style: 
+              color: white
+              top: 40%
+              left: 15%
+              width: 20%
+    ############### Day 1 Pop-Up #################      
+          - type: custom:state-element
+            entity: sensor.dark_sky_daily_high_temperature_1d
+            style: 
+              color: white
+              top: 50%
+              left: 5%
+              font-size: 40px
+    ############### Day 1 Pop-Up #################  
+          - type: image
+            image: /local/images/icons/water-percent.png
+            entity:
+              - sensor.dark_sky_precip_probability_1d
+            style: 
+              color: white
+              top: 40%
+              left: 20%
+              width: 8%
+    ############### Day 1 Pop-Up #################      
+          - type: custom:state-element
+            entity: sensor.dark_sky_daily_high_temperature_1d
+            style: 
+              color: white
+              top: 50%
+              left: 20%
+              font-size: 40px
+            
+
+  cards:
+    - type: picture-elements
+      image: /local/images/2000x80020p.png
+      style: |
+        ha-card { 
+        background-color: rgba(0,0,0,0.0);
+        }
+        
+      elements:
+########## Time ##########
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.time_12_hour_am_pm
+          style:
+            font-size: 60px
+            color: white
+            top: 10%
+            left: 10%
+
+########## Day Of The Week ##########
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.dayoftheweek
+          style:
+            font-size: 40px
+            color: white
+            top: 20%
+            left: 10%
+            #width: 25px
+            #height: 10px
+
+########## Month ##########
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.month
+          style:
+            font-size: 30px
+            color: white
+            top: 26%
+            left: 8%
+
+########## Day Of The Month ##########
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.dateofthemonth
+          style:
+            font-size: 30px
+            color: white
+            top: 26%
+            left: 13%        
+
+########## Summary ##########
+        - type: custom:state-element
+          entity: sensor.dark_sky_daily_summary
+          style:
+            text-align: center
+            font-size: 30px
+            color: white
+            top: 20%
+            left: 50%
+            width: 50%
+
+##########Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 48%
+            left: 50%
+            width: 25%
+
+##########Temperature##########
+
+
+        #- type: custom:state-element
+          #tap_action: null
+          #entity: sensor.dark_sky_temperature
+          #style:
+            #font-size: 30px
+            #color: white
+            #top: 80%
+            #left: 10%
+
+############################
+#                          #
+######## 7 Forecast ########
+#                          #
+############################
+
+
+      ##########Day1##########
+        - type: custom:state-element
+          entity: sensor.day1
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 20%
+
+########## Day 1 Icon ##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_1d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 20%
+            width: 8%
+
+
+##########Day2############
+        - type: custom:state-element
+          entity: sensor.day2
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 30%
+
+########## Day 2 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_2d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 30%
+            width: 8%      
+
+
+##########Day3###########
+        - type: custom:state-element
+          entity: sensor.day3
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 40%
+
+########## Day 3 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_3d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 40%
+            width: 8%
+
+
+##########Day4##########
+        - type: custom:state-element
+          entity: sensor.day4
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 50%
+
+########## Day 4 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_4d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 51%
+            width: 8%
+
+
+##########Day5#########
+        - type: custom:state-element
+          entity: sensor.day5
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 60%
+
+########## Day 5 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_5d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 61%
+            width: 8%
+
+##########Day6##########
+        - type: custom:state-element
+          entity: sensor.day6
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 70%
+
+########## Day 6 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_6d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 71%
+            width: 8%
+
+##########Day7##########
+        - type: custom:state-element
+          entity: sensor.day7
+          style:
+            font-size: 20px 
+            color: white
+            top: 75%
+            left: 80%
+
+########## Day 7 Icon##########
+        - type: image
+          #tap_action: null
+          entity: sensor.dark_sky_icon_7d
+          state_image:
+            clear-day: /local/images/icons/day.svg
+            clear-night: /local/images/icons/night.svg
+            rain: /local/images/icons/rainy-1.svg
+            partly-cloudy-day: /local/images/icons/cloudy-day-1.svg
+            partly-cloudy-night: /local/images/icons/cloudy-night-1.svg
+            wind: 
+            cloudy: /local/images/icons/cloudy.svg
+          style:
+            top: 85%
+            left: 81%
+            width: 8%
