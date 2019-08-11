@@ -1,0 +1,289 @@
+- title: A.0 Dock
+  panel: true
+
+#######################################################  
+#                                                     #   
+################### Pop-Up Card #######################
+#                                                     #
+#######################################################
+
+
+  popup_cards:
+    sensor.a_alarm:
+      title: Bedside lamp settings
+      large: true
+      style:
+        background-image: /local/images/2000x80020p.png
+        background-color: rgba(0,0,0,0.3)
+      card:
+        type: picture-elements
+        image: /local/images/2000x80020p.png
+        style: |
+          ha-card { 
+          background-color: rgba(0,0,0,0.9)
+          }
+
+        elements:  
+        - type: custom:state-element
+          tap_action: 
+          action: toggle
+          entity: sensor.a_alarm
+          style:
+            font-size: 150px
+            color: white
+            top: 50%
+            left: 50%
+            #width: 500px
+            #height: 20px
+
+          ### Plus H ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-up.png
+          title: Plus Hour
+          tap_action:
+            action: call-service
+            entity: input_select.a_alarm_hours
+            service: input_select.select_next
+            service_data: { "entity_id": " input_select.a_alarm_hours "}
+          style:
+            width: 180px
+            top: 10%
+            left: 30%        
+            
+              ### Minus H ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-down.png
+          title: Minus Hour
+          tap_action:
+            action: call-service
+            entity: input_select.a_alarm_hours
+            service: input_select.select_previous
+            service_data: { "entity_id": "input_select.a_alarm_hours"}
+          style:
+            width: 180px
+            top: 90%
+            left: 30%        
+
+
+                ### Plus M ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-up.png
+          title: Plus Minutes
+          tap_action:
+            action: call-service
+            entity:  input_select.a_alarm_minutes
+            service: input_select.select_next
+            service_data: { "entity_id": "input_select.a_alarm_minutes"}
+          style:
+            width: 180px
+            top: 10%
+            left: 50%        
+            
+            ### Minus M ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-down.png
+          title: Minus Minutes
+          tap_action:
+            action: call-service
+            entity:  input_select.a_alarm_minutes
+            service: input_select.select_previous
+            service_data: { "entity_id": "input_select.a_alarm_minutes"}
+          style:
+            width: 180px
+            top: 90%
+            left: 50%        
+
+            
+                ### Plus AM/PM ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-up.png
+          title: Plus AM/PM
+          tap_action:
+            action: call-service
+            entity: input_select.alarm_ampm
+            service: input_select.select_next
+            service_data: { "entity_id": "input_select.alarm_ampm"}
+          style:
+            width: 180px
+            top: 10%
+            left: 70%        
+            
+            ### Minus AM/PM ###
+        - type: image
+          image: /local/images/RemoteIcons/chevron-down.png
+          title: Minus AM/PM
+          tap_action:
+            action: call-service
+            entity: input_select.alarm_ampm
+            service: input_select.select_previous
+            service_data: { "entity_id": "input_select.alarm_ampm"}
+          style:
+            width: 180px
+            top: 90%
+            left: 70%        
+
+            
+
+
+  cards:
+#######################################################  
+#                                                     #   
+####################### Clock #########################
+#                                                     #
+#######################################################
+
+  - type: picture-elements
+    image: /local/images/2000x80020p.png
+    style: |
+      ha-card { 
+      background-color: rgba(0,0,0,0.0);
+      }
+
+
+      @keyframes shadow-pulse {
+        0% {
+        box-shadow: 0 0 0 0px rgba(255, 0, 0, 0.2);
+        }
+        100% {
+        box-shadow: 0 0 0 35px rgba(255, 0, 0, 0);
+        }
+      }
+
+
+    elements:
+
+########### Inside Temp ############
+
+        ### Temp Number ###
+      - type: custom:state-element
+        entity: sensor.multisensor_temperature
+        prefix: "<b style='font-weigth: bold; color: white: font-size: 15px'>IN Temp: </b>"
+        #suffix: "<b style='font-weigth: bold; color: red'>Friendle name: </b>"
+        style:
+          font-size: 25px
+          color: white
+          top: 20%
+          left: 5%
+          transform: none
+
+
+        ### Temp Unit ###
+      - type: custom:state-attribute-element
+        entity: sensor.multisensor_temperature
+        attribute: unit_of_measurement
+        #prefix: "<b style='font-weigth: bold; color: red'>Insert text here</b>"
+        #suffix: "<b style='font-weigth: bold; color: red'>Friendle name: </b>"
+        style:
+          font-size: 25px
+          color: white
+          top: 20%
+          left: 17%
+          transform: none
+
+########### Outside Temp ############
+
+
+                ### Temp Number ###
+      - type: custom:state-element
+        entity: sensor.dark_sky_temperature             
+        prefix: "<b style='font-weigth: bold; color: white: font-size: 15px'>EX Temp: </b>"
+        #suffix: "<b style='font-weigth: bold; color: red'>Friendle name: </b>"
+        style:
+          font-size: 25px
+          color: white
+          top: 30%
+          left: 5%
+          transform: none
+
+
+                ### Temp Unit ###
+      - type: custom:state-attribute-element
+        entity: sensor.multisensor_temperature
+        attribute: unit_of_measurement
+        #prefix: "<b style='font-weigth: bold; color: red'>Friendle name: </b>"
+        #suffix: "<b style='font-weigth: bold; color: red'>Friendle name: </b>"
+        style:
+          font-size: 25px
+          color: white
+          top: 30%
+          left: 17%
+          transform: none
+
+
+        ########## Time ##########
+      - type: custom:state-element
+        tap_action:
+        action: toggle
+        entity: sensor.time_am_pm
+        style:
+          font-size: 100px
+          color: white
+          top: 60%
+          left: 75%
+
+        ########## AM/PM ##########
+      - type: custom:state-element
+        tap_action:
+        action: toggle
+        entity:  sensor.time_12_hour
+        style:
+          font-size: 300px
+          color: white
+          top: 50%
+          left: 50%
+
+        ##########Alarm Toggle########## Come back and add a hold action
+
+      - type: conditional 
+        conditions:
+          - entity: input_boolean.a_alarm_status
+            state: "on"
+            #state_not: "charging"
+        elements:
+          - type: image
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/images/alarmon.png
+              "off": /local/images/alarm.png
+            entity: input_boolean.a_alarm_status
+            style:
+              #font-size: px
+              color: white
+              top: 30%
+              left: 80%
+              width: 40px
+              border-radius: 100px
+              animation: shadow-pulse 1s infinite
+###### Conditional Card Ends #####
+
+      - type: image
+        tap_action:
+          action: toggle
+        state_image:
+          "on": /local/images/alarmon.png
+          "off": /local/images/alarm.png
+        entity: input_boolean.a_alarm_status
+        style:
+          #font-size: px
+          color: white
+          top: 30%
+          left: 80%
+          width: 40px
+          border-radius: 100px
+          #animation: shadow-pulse 1s infinite
+
+
+        ########## Next Alarm ##########
+      - type: state-label
+        prefix: "Next Alarm:  "
+        #tap_action:
+        #action: more_info
+        entity: sensor.a_alarm
+        style:
+          font-size: 30px
+          color: white
+          top: 80%
+          left: 50%
+          #width: 40px
+
