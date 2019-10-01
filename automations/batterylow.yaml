@@ -1,0 +1,9 @@
+- alias: Low Battery
+  trigger:
+  - entity_id: device_tracker.life360_ashley
+    platform: state
+  condition: []
+  action:
+  - data:
+      message: Your battery is low
+    service: tts.google_translate_say

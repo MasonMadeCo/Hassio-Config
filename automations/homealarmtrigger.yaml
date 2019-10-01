@@ -1,0 +1,11 @@
+- alias: Home Alarm Trigger
+  trigger:
+  - entity_id: input_select.home_alarm
+    platform: state
+    to: triggered
+  condition: []
+  action:
+  - data:
+      message: 'You are trespassing. You''re picture has been taken and a video of
+        you is being recorded. '
+    service: tts.google_translate_say

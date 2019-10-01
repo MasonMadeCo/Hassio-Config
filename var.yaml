@@ -1,0 +1,123 @@
+lights:
+    friendly_name: 'Empty Lights'
+    initial_value: 0
+    icon: mdi:bug
+    tracked_entity_id: input_select.house_media
+
+menu:
+    friendly_name: 'Empty Menu'
+    initial_value: 0
+    icon: mdi:bug
+    tracked_entity_id: input_select.house_media
+
+living_room_media:
+    friendly_name: "Living Room Media Status"
+    value_template: >-
+      {% if states('input_select.living_room_media') == "TV" %}
+        55681787
+      {% elif states('input_select.living_room_media') == "Sonos" %}
+        53420652
+      {% else %}
+        Select Input
+      {% endif %}
+
+    tracked_entity_id:
+      - var.living_room_media
+      - input_select.living_room_media
+
+
+dayselect:
+    friendly_name: "Living Room Media Status"
+    value_template: >-
+      {% if states('input_select.living_room_media') == "TV" %}
+        55681787
+      {% elif states('input_select.living_room_media') == "Sonos" %}
+        53420652
+      {% else %}
+        Select Input
+      {% endif %}
+
+    tracked_entity_id:
+      - var.living_room_media
+      - input_select.living_room_media
+
+
+home_alarm_status:
+    friendly_name: "Alarm Status"
+    value_template: >-
+      {% if states('input_text.home_alarm') == "----" %}
+        armed
+      {% elif states('input_text.home_alarm') == "REDACTED" %}
+        disarmed  
+      {% else %}
+        error
+      {% endif %}
+
+    tracked_entity_id:
+      - var.home_alarm_status
+      - sensor.home_alarm_input
+      - input_text.home_alarm
+
+sonosalbum:
+    friendly_name: "Sonos Album"
+    value_template: "{{states.media_player.kitchen.attributes.entity_picture}}"
+
+
+dooropen:
+    friendly_name: "Main Door Opened"
+    value_template: >-
+      {% if states('binary_sensor.wyzesense_77812ce6') == "on" %}
+        Front Door
+      {% elif states('binary_sensor.wyzesense_778109a4') == "on" %}
+        Back Door
+      {% else %}
+        Main Doors Closed
+      {% endif %}
+
+    tracked_entity_id:
+      - var.dooropen
+      - binary_sensor.wyzesense_77812ce6
+      - binary_sensor.wyzesense_778109a4
+
+
+homemode:
+    friendly_name: "Home Mode"
+    value_template: >-
+      {% if states('input_boolean.family_mode') == "on" %}
+        Family Mode
+      {% elif states('input_boolean.guest_mode') == "on" %}
+      Guest Mode
+      {% else %}
+        Error
+      {% endif %}
+
+    tracked_entity_id:
+      - input_boolean.family_mode
+      - input_boolean.guest_mode
+      - var.homemode
+
+brightness:
+    friendly_name: Brightness
+    value_template: >-
+      {% if states('input_boolean.day_mode') == "on" %}
+        70
+      {% elif states('input_boolean.nap_mode') == "on" %}
+        20
+      {% elif states('input_boolean.night_mode') == "on" %}
+        50
+      {% elif states('input_boolean.sleep_mode') == "on" %}
+        10
+      {% else %}
+        100
+      {% endif %}
+      
+    tracked_entity_id:
+      - input_boolean.day_mode
+      - input_boolean.nap_mode 
+      - input_boolean.night_mode
+      - input_boolean.sleep_mode
+      - var.brightness
+
+
+
+

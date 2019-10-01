@@ -1,0 +1,31 @@
+
+#Ashley's Alarm Dock#
+a_alarm_status:
+  name: A Dock Alarm
+  icon: mdi:alarm-check
+
+
+#Tony's Alarm Dock#
+t_alarm_status:
+  name: T Dock Alarm
+  icon: mdi:alarm-check
+
+#Day Modes
+nap_mode:
+  name: Nap Mode
+
+night_mode:
+  name: Night Mode
+
+day_mode:
+  name: Awake Mode
+
+sleep_mode:
+  name: Sleep Mode
+
+# People Modes
+guest_mode:
+  name: Guest Mode
+
+family_mode:
+  name: Family

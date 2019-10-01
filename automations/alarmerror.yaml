@@ -1,0 +1,14 @@
+- alias: Alarm Enter & Clear
+  trigger:
+  - entity_id: var.home_alarm_status
+    platform: state
+    to: error
+  condition: []
+  action:
+  - data:
+      entity_id: script.alarm_enter
+    service: script.turn_on
+  - delay: 0:00:01
+  - data:
+      entity_id: script.alarm_reset
+    service: script.turn_on

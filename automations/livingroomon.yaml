@@ -1,0 +1,14 @@
+- alias: 'Living Room On'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.wyzesense_777fed65
+    from: 'off'
+    to: 'on'
+  
+  action:
+  - service: light.turn_on
+    data_template:
+      brightness: > 
+        {{ states('var.brightness')|int }}
+        
+      entity_id: light.living_room

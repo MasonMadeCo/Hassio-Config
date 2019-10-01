@@ -1,0 +1,13 @@
+
+- alias: Family & Guest Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.family_mode, input_boolean.guest_mode
+      from: 'off'
+      to: 'on'
+  action:
+    service: input_boolean.turn_off
+    data_template:
+      entity_id: >
+        {% set booleans = [ 'input_boolean.family_mode', 'input_boolean.guest_mode' ] | reject('equalto', trigger.entity_id) | list %}
+        {{ booleans[0] }}

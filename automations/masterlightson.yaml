@@ -1,0 +1,11 @@
+- alias: master lights on
+  trigger:
+  - entity_id: binary_sensor.multisensor_motion
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness_pct: '50'
+      entity_id: light.master_bedroom
+    service: light.turn_on

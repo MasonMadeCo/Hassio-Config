@@ -1,0 +1,12 @@
+- alias: Front Door Open
+  trigger:
+  - entity_id: binary_sensor.wyzesense_front_door
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.kitchen
+      message: 'Front door opened '
+    service: tts.google_translate_say

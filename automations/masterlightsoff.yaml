@@ -1,0 +1,13 @@
+- alias: master lights off
+  trigger:
+  - entity_id: binary_sensor.multisensor_motion
+    for: 00:01:00
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom
+    service: light.turn_off
+

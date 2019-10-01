@@ -1,0 +1,12 @@
+- alias: master bath off
+  trigger:
+  - entity_id: binary_sensor.wyzesense_777fed65
+    for: 00:00:45
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bathroom
+    service: light.turn_off

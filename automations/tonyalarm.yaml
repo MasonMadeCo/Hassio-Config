@@ -1,0 +1,14 @@
+- alias: Tony's Alarm
+  trigger:
+  - entity_id: sensor.t_alarmtrigger
+    from: 'False'
+    platform: state
+    to: 'True'
+  condition:
+  - condition: state
+    entity_id: input_boolean.t_alarm_status
+    state: 'on'
+  action:
+  - data:
+      message: 'Alarm '
+    service: tts.google_translate_say

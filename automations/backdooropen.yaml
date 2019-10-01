@@ -1,0 +1,12 @@
+- alias: Back Door Open
+  trigger:
+  - entity_id: binary_sensor.wyzesense_back_door
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.kitchen
+      message: 'Back door opened '
+    service: tts.google_translate_say
